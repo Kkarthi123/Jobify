@@ -1,32 +1,47 @@
 
 ## Getting Started
 
-Clone or donwload the project,
-Open the Terminal in project directory then, follow the below steps:
+To clone and run this project locally, follow these steps:
 
-Install packages
-```bash
-npm i
-# or
-yarn i
-# or
-pnpm i
-# or
-bun i
-```
+1. **Install Node.js**
 
-Then run the development server
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    Make sure you have [Node.js](https://nodejs.org/) installed on your machine. Download the latest LTS version for your operating system and follow the installation instructions. You can verify the installation by running:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    ```bash
+    node --version
+    npm --version
+    ```
 
-You can access the app in vercel deployment as well - [https://jobify-steel.vercel.app/jobs](https://jobify-steel.vercel.app/jobs)
+2. **Clone the repository**
+     ```bash
+     git clone <repository-url>
+     cd job-board
+     ```
+
+3. **Install dependencies**
+     ```bash
+     npm install
+     # or
+     yarn install
+     # or
+     pnpm install
+     # or
+     bun install
+     ```
+
+4. **Run the development server**
+     ```bash
+     npm run dev
+     # or
+     yarn dev
+     # or
+     pnpm dev
+     # or
+     bun dev
+     ```
+
+5. **Open your browser**
+     Visit [http://localhost:3000](http://localhost:3000) to see the result.
+
+You can also access the app on Vercel: [https://jobify-steel.vercel.app](https://jobify-steel.vercel.app)
 
