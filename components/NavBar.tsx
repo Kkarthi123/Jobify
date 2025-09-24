@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import Link from "next/link";
 import { Briefcase, LogOut } from "lucide-react";
 import navBarConfig from "../config/nav-bar-config";
@@ -13,6 +13,8 @@ export default function  NavBar(){
     const logOut = useJobstore((state) => state.logout);
     const router = useRouter();
     const role = useJobstore((state) => state.user?.role);
+    const email = useJobstore((state) => state.user?.email!);
+    const [open, setOpen] = useState(false);
 
     const handleLogout = async() => {
         try {
@@ -36,27 +38,49 @@ export default function  NavBar(){
 
             {/* Navigation Links */}
             <div className="flex items-center gap-6">
-            {navBarConfig.map((item) => (
-                item.Role.includes(role!) && (
-                    <Link
-                        href={item.link}
-                        className="flex items-center gap-1 text-gray-700 hover:text-blue-600 transition-colors font-medium"
-                        title={item.tooltip}
-                        key={item.id}
+                {navBarConfig.map((item) => (
+                    item.Role.includes(role!) && (
+                        <Link
+                            href={item.link}
+                            className="flex items-center gap-1 text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                            title={item.tooltip}
+                            key={item.id}
+                        >
+                            {item.icon}
+                            <span className="hidden sm:inline">{item.title}</span>
+                        </Link>
+                    )
+                ))}
+
+                <div className="relative text-left flex group">
+                    <button
+                        onMouseEnter={() => setOpen(true)}
+                        onMouseLeave={() => setOpen(false)}
                     >
-                        {item.icon}
-                        <span className="hidden sm:inline">{item.title}</span>
-                    </Link>
-                )
-            ))}
-            <button
-                className="flex cursor-pointer items-center gap-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors font-medium px-4 py-2 rounded-md border border-red-200"
-                onClick={handleLogout}
-                title="Logout"
-            >
-                <LogOut className="text-red-600" size={20} />
-                <span className="hidden sm:inline">Logout</span>
-            </button>
+                        <div className="flex items-center justify-center cursor-pointer">
+                        <img
+                            src={`https://ui-avatars.com/api/?name=${encodeURIComponent(email)}&size=35&background=2171ff&color=ffffff&rounded=true`}
+                            alt={`${email} avatar`}
+                            className="w-[35px] h-[35px] rounded-full object-cover bg-gray-100 border-[2px] border-[#2171ff5c]"
+                        />
+                        </div>
+                    </button>
+
+                    <div className="absolute right-0 mt-2 top-[30px] w-56 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-200 z-50">
+                        <div className="px-4 py-3 border-b border-gray-200">
+                            <p className="text-gray-900 font-semibold">{email}</p>
+                            <p className="text-gray-500 text-sm">{role}</p>
+                        </div>
+
+                        <button
+                            onClick={handleLogout}
+                            className="w-full flex items-center cursor-pointer gap-2 px-4 py-2 text-red-600 hover:bg-red-50 rounded-md transition-colors"
+                        >
+                            <LogOut size={20} />
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </nav>
     );

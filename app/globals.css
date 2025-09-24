@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+body {
+  font-family: var(--font-Inter), sans-serif;
+}
+
 .loader {
   width: 30px;
   aspect-ratio: 2;
