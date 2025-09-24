@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 export default function  NavBar(){
     const logOut = useJobstore((state) => state.logout);
     const router = useRouter();
+    const role = useJobstore((state) => state.user?.role);
 
     const handleLogout = async() => {
         try {
@@ -36,15 +37,17 @@ export default function  NavBar(){
             {/* Navigation Links */}
             <div className="flex items-center gap-6">
             {navBarConfig.map((item) => (
-                <Link
-                href={item.link}
-                className="flex items-center gap-1 text-gray-700 hover:text-blue-600 transition-colors font-medium"
-                title={item.tooltip}
-                key={item.id}
-                >
-                {item.icon}
-                <span className="hidden sm:inline">{item.title}</span>
-                </Link>
+                item.Role.includes(role!) && (
+                    <Link
+                        href={item.link}
+                        className="flex items-center gap-1 text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                        title={item.tooltip}
+                        key={item.id}
+                    >
+                        {item.icon}
+                        <span className="hidden sm:inline">{item.title}</span>
+                    </Link>
+                )
             ))}
             <button
                 className="flex cursor-pointer items-center gap-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors font-medium px-4 py-2 rounded-md border border-red-200"

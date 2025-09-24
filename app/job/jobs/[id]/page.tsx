@@ -3,12 +3,14 @@ import { useParams } from 'next/navigation';
 import { useJobstore } from '@/store/jobStore';
 import JobDetailCard from '@/components/JobDetailCard';
 import { Ban } from 'lucide-react'
+import { Role } from '@/types';
 
 
 export default function JobDetail() {
   const { id } = useParams();
   const jobs = useJobstore((state) => state.jobs);
   const job = jobs.find((j) => j.id === id);
+  const role = useJobstore((state) => state.user?.role);
 
   if (!job) {
     return (
@@ -22,7 +24,7 @@ export default function JobDetail() {
 
   return (
     <div className="flex justify-center p-4">
-      <JobDetailCard job={job} />
+      <JobDetailCard job={{ ...job, isShowApplyButton: role === Role.User }} />
     </div>
   );
 }

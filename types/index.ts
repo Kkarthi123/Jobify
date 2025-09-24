@@ -7,6 +7,7 @@ export type Job = {
   employment_type: string;
   qualifications: string[] | string;
   created_at: string;
+  isShowApplyButton?: boolean;
 };
 
 export type AppUser = {

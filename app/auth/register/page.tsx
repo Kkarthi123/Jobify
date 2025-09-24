@@ -12,7 +12,7 @@ export default function RegisterPage() {
     const router = useRouter();
     const setUser = useJobstore((state) => state.setUser);
 
-    const handleSubmit = async (formData: AuthData) => {
+    const handleSubmit = async (formData: AuthData, callback: (err: any) => void) => {
         try {
             const userCredential = await createUserWithEmailAndPassword(
                 Auth,
@@ -24,9 +24,9 @@ export default function RegisterPage() {
                 role: formData.role 
             });
             setUser({ userId: userCredential.user.uid, email: userCredential.user.email, role: formData.role });
-            router.push("/jobs");
+            router.push("/job/jobs");
         } catch (error) {
-            console.error(error);
+             callback(error);
         }
     };
 

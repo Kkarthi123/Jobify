@@ -6,7 +6,7 @@ export default function JobCard({ job }: JobCardProps) {
   return (
     <div className="">
     <Link
-      href={`/jobs/${job.id}`}
+      href={`/job/jobs/${job.id}`}
       className="w-full sm:w-[360px] md:w-[400px] lg:w-[440px] group"
       style={{ textDecoration: "none" }}
     >

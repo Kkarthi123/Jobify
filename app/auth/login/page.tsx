@@ -9,13 +9,13 @@ import { useJobstore } from "@/store/jobStore";
 export default function LoginPage() {
     const router = useRouter();
     const setUser = useJobstore((state) => state.setUser);
-    const handleSubmit = async (formData: AuthData) => {
+    const handleSubmit = async (formData: AuthData, callback: (err: any) => void) => {
         try {
             const userCredential = await signInWithEmailAndPassword(Auth, formData.email, formData.password);
             setUser({userId: userCredential.user.uid, email: userCredential.user.email});
             router.push('/job/jobs');
         } catch (error) {
-            console.error(error);
+            callback(error);
         }
     };
     return (

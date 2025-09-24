@@ -1,3 +1,4 @@
+import { Role } from "@/types";
 import { Briefcase, PlusCircle } from "lucide-react";
 
 const navBarConfig = [
@@ -7,6 +8,7 @@ const navBarConfig = [
         link: '/job/jobs',
         tooltip: 'View all jobs',
         icon: <Briefcase size={20} />,
+        Role: [Role.User, Role.Recruiter]
     },
     {
         id:2,
@@ -14,6 +16,7 @@ const navBarConfig = [
         link: '/job/new-job',
         tooltip: 'Add a new job',
         icon: <PlusCircle size={20} />,
+        Role: [Role.Recruiter]
     }
 ]
 
