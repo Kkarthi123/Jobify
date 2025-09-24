@@ -13,7 +13,7 @@ export default function LoginPage() {
         try {
             const userCredential = await signInWithEmailAndPassword(Auth, formData.email, formData.password);
             setUser({userId: userCredential.user.uid, email: userCredential.user.email});
-            router.push('/jobs');
+            router.push('/job/jobs');
         } catch (error) {
             console.error(error);
         }
