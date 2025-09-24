@@ -4,14 +4,14 @@ const navBarConfig = [
     {
         id:1,
         title: 'All Jobs',
-        link: '/jobs',
+        link: '/job/jobs',
         tooltip: 'View all jobs',
         icon: <Briefcase size={20} />,
     },
     {
         id:2,
         title: 'Add Job',
-        link: '/add-job',
+        link: '/job/new-job',
         tooltip: 'Add a new job',
         icon: <PlusCircle size={20} />,
     }

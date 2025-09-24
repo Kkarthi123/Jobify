@@ -9,6 +9,25 @@ export type Job = {
   created_at: string;
 };
 
+export type AppUser = {
+  userId: string;
+  email: string | null;
+  role?: Role | undefined;
+}
+
+export type AuthData = {
+  email: string;
+  password: string;
+  role?: Role;
+}
+
+export enum Role {
+  Recruiter = 'recruiter',
+  User = 'user'
+}
+
+
+
 export interface JobState {
   jobs: Job[];
   isPending: boolean;
@@ -17,6 +36,12 @@ export interface JobState {
   setJobs: (jobs: Job[]) => void;
   setPending: (isPending: boolean) => void;
   setError: (isError: boolean) => void;
+
+  user: AppUser | null;
+  setUser: (user: AppUser | null) => void;
+  logout: () => void;
+  isLoggedIn: boolean;
+  setIsLoggedIn: (isLoggedIn: boolean) => void;
 }
 
 export interface JobCardProps {

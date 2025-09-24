@@ -48,7 +48,7 @@ export default function JobForm({}){
         };
         try {
             addJob(newJob);
-            router.push('/jobs');
+            router.push('/job/jobs');
         } catch (error) {
             console.error('Error submitting job:', error);
         }
