@@ -26,19 +26,26 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
             role: userData.role,
           });
         }
-        if (pathname.startsWith("/auth")) router.push("/job/jobs");
+        if (pathname.startsWith("/auth")) {
+          router.push("/job/jobs");
+          return;
+        }
       } else {
-        if (!pathname.startsWith("/auth")) router.push("/auth/login");
+        if (!pathname.startsWith("/auth")) {
+          router.push("/auth/login")
+          return;
+        };
       }
+
+      setLoading(false);
     } catch (err) {
       console.error(err);
-    } finally {
-      setLoading(false); // ensure loading stops
-    }
+      setLoading(false);
+    } 
   });
 
   return () => unsubscribe();
-  }, [router, pathname]);
+  }, [pathname]);
 
 
 
